@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Header, Title, Content, Button, Left, Right, Body, Spinner } from 'native-base';
-import { Font } from 'expo';
+import * as Font from 'expo-font';//{ Font } from 'expo';
 import SocketStore from '../stores/socket_store';
 import { Provider } from 'react-redux';
 import { BlossomApp } from '../components/blossom_app.js';
