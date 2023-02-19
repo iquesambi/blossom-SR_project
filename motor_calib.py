@@ -3,9 +3,21 @@ import time
 
 # get ports and start connection to motors
 ports = pd.get_available_ports()
-motors = pd.Dxl320IO(ports[0],1000000)
+motor_id = 0
+for port in ports:
+    try: 
+        print(port)
+        motors = pd.Dxl320IO(port,1000000)
+        print(motors)
+        motor_id = motors.scan(range(20))
+        print(motor_id)
+        if (len(motor_id)>=1):
+            break
+    except Exception as e:
+        print(e)
+        pass
 
-motor_id = motors.scan(range(20))
+
 
 # only work with one motor at a time
 if (len(motor_id)>1):
