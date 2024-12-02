@@ -16,7 +16,7 @@ class RobotConfig(object):
 
     def __init__(self):
         self.ports = pd.get_available_ports()
-        self.ports = [self.ports[i] for i in range(len(self.ports)) if 'usb' in self.ports[i]]
+        self.ports = [self.ports[i] for i in range(len(self.ports)) if ('usb' in self.ports[i] or 'COM' in self.ports[i])]
         # catch no available ports
         if (len(self.ports) == 0):
             self.ports = ['']

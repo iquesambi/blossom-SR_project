@@ -25,6 +25,7 @@ import time
 import uuid
 import requests
 import logging
+import tkinter as tk
 # seed time for better randomness
 random.seed(time.time())
 
@@ -197,6 +198,21 @@ class SequenceRobot(robot.Robot):
 CLI Code
 '''
 
+def open_gui():
+    # Create the main window
+    root = tk.Tk()
+    root.title("Simple GUI")
+
+    # Set window dimensions
+    root.geometry("400x300")
+    
+    def on_button_click():
+        print("Button clicked!")
+    
+    button = tk.Button(root, text="Click Me", command=on_button_click)
+    button.pack(pady=20)  # Place the button with some padding
+    # Run the main event loop
+    root.mainloop()
 
 def start_cli(robot):
     """
@@ -544,7 +560,10 @@ def main(args):
     # get robots to start
     global master_robot
     global robots
-
+    
+    #Run GUI
+    #open_gui()
+    
     # use first name as master
     configs = RobotConfig().get_configs(args.names)
     master_robot = safe_init_robot(args.names[0], configs[args.names[0]])
