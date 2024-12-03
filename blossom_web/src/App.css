@@ -25,6 +25,14 @@ input[type=text], select {
   border-width: 2px;
   border-color: black;
 }
+.blossom-controls .row {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  border-width: 2px;
+  border-color: black;
+}
 
 .video-card {
   cursor: pointer;

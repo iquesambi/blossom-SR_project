@@ -41,7 +41,7 @@ export class VideoApp extends React.Component {
         </div>
         <Link to="/gestures">
           <div className="btn btn-primary">
-            Go to Gesture Controls
+            Go to Gesture Controls!
           </div>
         </Link>
       </div>
