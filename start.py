@@ -25,7 +25,6 @@ import time
 import uuid
 import requests
 import logging
-import tkinter as tk
 # seed time for better randomness
 random.seed(time.time())
 
