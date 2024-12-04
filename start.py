@@ -25,6 +25,7 @@ import time
 import uuid
 import requests
 import logging
+#import tkinter as tk
 # seed time for better randomness
 random.seed(time.time())
 
@@ -196,7 +197,7 @@ class SequenceRobot(robot.Robot):
 '''
 CLI Code
 '''
-
+'''
 def open_gui():
     # Create the main window
     root = tk.Tk()
@@ -212,6 +213,7 @@ def open_gui():
     button.pack(pady=20)  # Place the button with some padding
     # Run the main event loop
     root.mainloop()
+'''
 
 def start_cli(robot):
     """
