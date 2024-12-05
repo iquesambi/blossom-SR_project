@@ -2,13 +2,13 @@ import React, { useSyncExternalStore } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * A button that fires a sequence
+ * A button that builds and saves a new sequence
  */
-export class PosButton extends React.PureComponent {
+export class SequenceBuilderButton extends React.PureComponent {
   handleClick() {
     fetch(`/add_sequence`, {
       method: 'POST',
-      body: JSON.stringify([{
+      body: JSON.stringify([{ // hard coded for now, should read real values
         x: 80,
         y: 0,
         z: 0,
@@ -36,7 +36,7 @@ export class PosButton extends React.PureComponent {
             id={this.props.name}
             className="btn btn-primary"
             type="button"
-            value={'Add sequence'}
+            value={'Build Sequence'}
             onClick={this.handleClick.bind(this)} >
           </input>
         </div>
@@ -45,4 +45,4 @@ export class PosButton extends React.PureComponent {
   }
 }
 
-PosButton.propTypes = {}
+SequenceBuilderButton.propTypes = {}

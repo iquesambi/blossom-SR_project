@@ -2,15 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * A button that fires a sequence
+ * A button that fires a manual position move
  */
 export class ManualButton extends React.PureComponent {
   handleClick() {
-    console.log(this.props.name)
-    console.log(this.props.position)
-    //const seq = this.props.name;
-    //fetch(`/s/${seq}`)
-    //  .then((response) => { console.log(`${seq} gesture fired`) });
+    fetch(`/position`, {
+      method: 'POST',
+      body: JSON.stringify({
+        x: 0,
+        y: 0,
+        z: 80,
+        h: 50,
+        ears: 50,
+        ax: 0,
+        ay: 0,
+        az: 0,
+        mirror: false,
+      }),
+    })
+    .catch(() => {});
   }
 
   render() {
@@ -20,7 +30,7 @@ export class ManualButton extends React.PureComponent {
           <input
             className="btn btn-primary"
             type="button"
-            value = "Send!"
+            value = "Go to Position"
             onClick={this.handleClick.bind(this)} >
           </input>
         </div>
@@ -29,7 +39,4 @@ export class ManualButton extends React.PureComponent {
   }
 }
 
-ManualButton.propTypes = {
-  name: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
-}
+ManualButton.propTypes = {}
