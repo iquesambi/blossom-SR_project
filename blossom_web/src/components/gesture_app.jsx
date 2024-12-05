@@ -69,47 +69,7 @@ export class GestureApp extends React.Component {
             <div>
               <h4>Position Control</h4>
               <div className="blossom-controls">
-                <h5>Pitch</h5>
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value={value}
-                  onChange={(e) => setState({pitch: e.target.value})}
-                />
-                <h5>Roll</h5>
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value={value}
-                  onChange={(e) => setState({roll: e.target.value})}
-                />
-                <h5>Yaw</h5>
-                <input
-                  type="range"
-                  min="0"
-                  max="360"
-                  value={value}
-                  onChange={(e) => setState({yaw: e.target.value})}
-                />
-                <h5>Height</h5>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={value}
-                  onChange={(e) => setState({height: e.target.value})}
-                />
-                <h5>Ears</h5>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={value}
-                  onChange={(e) => setState({ears: e.target.value})}
-                />
-                <PosButton alpha={this.state.pitch} beta={this.state.roll} gamma={this.state.yaw} h={this.state.height} ears={this.state.ears} />
+                <PosButton/>
               </div>
             </div>
           </div>

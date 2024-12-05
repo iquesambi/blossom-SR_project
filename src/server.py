@@ -12,6 +12,7 @@ from collections import OrderedDict
 import socket
 import requests
 from flask_cors import CORS
+import time
 
 class Server(object):
     """
@@ -126,6 +127,52 @@ def handle_sequence_idle(gesture, idle):
         pass
     return gesture, "fired"
 
+@app.route('/add_sequence', methods=['POST'])
+def add_sequence():
+    # assume array of JSONs (pitch, roll, yaw, height, ears, acc_x, acc_y, acc_z, delay)
+    raw_data = json.loads(request.get_data().decode('utf-8'))
+    server.record(server.master_robot)
+    for frame in raw_data:
+        imu = get_frame_data(frame)
+        # get base motor positions, accounting for stored yaw reset position
+        adj_yaw = imu[2]-server.yaw
+        pos = k.get_motor_pos(
+            [-adj_yaw, imu[0], -imu[1], imu[3]], [0, 0, 0])
+        # get ear motor position
+        ears_pos = k.get_ears_pos(imu[4])
+        wait_time = imu[5]
+        # save orientation
+        ori = [-imu[2], imu[0], -imu[1]]
+
+        # command positions
+        motor_pos = {
+            'tower_1': pos[0],
+            'tower_2': pos[1],
+            'tower_3': pos[2],
+            'base': pos[3],
+            'ears': ears_pos
+        }
+
+        # prevent quick turning around
+        if 'base' in server.motor_pos:
+            last_yaw = server.motor_pos['base']
+            if(np.abs(last_yaw - motor_pos['base']) > 100):
+                motor_pos['base'] = last_yaw
+
+        print(f"Sleeping for {wait_time} seconds")
+        time.sleep(wait_time)
+        print("Moving")
+        # adjust the duration (numeric input to goto_position)
+        # higher (0.3) = slow+smooth, low (0.1) = jittery+fast
+        for bot in server.robots:
+            print(motor_pos)
+            bot.goto_position(motor_pos, 0.1, True)
+            bot.believed_motor_pos = motor_pos
+
+        server.motor_pos = motor_pos
+    server.stop_record(server.master_robot, 'new')
+    return "200 OK"
+
 
 @app.route('/position', methods=['POST'])
 def set_position():
@@ -144,7 +191,7 @@ def set_position():
     # get base motor positions, accounting for stored yaw reset position
     adj_yaw = imu[2]-server.yaw
     pos = k.get_motor_pos(
-        [-adj_yaw, imu[0], -imu[1], imu[3]], [imu[4], imu[5], imu[6]])
+        [-adj_yaw, imu[0], -imu[1], imu[3]], [0, 0, 0])
     # get ear motor position
     ears_pos = k.get_ears_pos(imu[4])
     # save orientation
@@ -187,6 +234,19 @@ def set_position():
     server.motor_pos = motor_pos
     return "200 OK"
 
+def get_frame_data(frame):
+    """
+    return the current frame values of the robot
+    """
+    global cur_yaw
+
+    # convert to floats
+    frame = [frame['x'], frame['y'], frame['z'],
+           frame['h'], frame['ears'],
+           frame['time']]
+
+    cur_yaw = frame[2]
+    return frame
 
 def get_imu_data(raw_data):
     """

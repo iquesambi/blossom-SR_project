@@ -6,25 +6,26 @@ import PropTypes from 'prop-types';
  */
 export class PosButton extends React.PureComponent {
   handleClick() {
-    console.log(this.props.alpha);
-    /*fetch(`/position`, {
+    fetch(`/add_sequence`, {
       method: 'POST',
-      body: JSON.stringify({
-        x: this.props.alpha,
-        y: this.props.beta,
-        z: this.props.gamma,
-        h: this.props.h,
-        ears: this.props.ears,
-        ax: 0,
-        ay: 0,
-        az: 0,
-        mirror: false,
-      }),
+      body: JSON.stringify([{
+        x: 80,
+        y: 0,
+        z: 0,
+        h: 50,
+        ears: 50,
+        time: 0,
+      },
+      {
+        x: 0,
+        y: 0,
+        z: 80,
+        h: 50,
+        ears: 50,
+        time: 2,
+      }]),
     })
-    .catch(() => {});*/
-    //const seq = this.props.name;
-    //fetch(`/s/${seq}`)
-    //  .then((response) => { console.log(`${seq} gesture fired`) });
+    .catch(() => {});
   }
 
   render() {
@@ -35,7 +36,7 @@ export class PosButton extends React.PureComponent {
             id={this.props.name}
             className="btn btn-primary"
             type="button"
-            value={'Go to position'}
+            value={'Add sequence'}
             onClick={this.handleClick.bind(this)} >
           </input>
         </div>
@@ -44,10 +45,4 @@ export class PosButton extends React.PureComponent {
   }
 }
 
-PosButton.propTypes = {
-  alpha: PropTypes.int.isRequired,
-  beta: PropTypes.int.isRequired,
-  gamma: PropTypes.int.isRequired,
-  h: PropTypes.int.isRequired,
-  ears: PropTypes.int.isRequired
-}
+PosButton.propTypes = {}
