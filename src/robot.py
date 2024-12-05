@@ -66,6 +66,8 @@ class Robot(object):
         # try going to position
         try:
             self.robot.goto_position(motor_pos, duration=delay, wait=wait)
+            #self.believed_motor_pos.update(motor_pos)
+            #print(self.believed_motor_pos)
         # motor doesn't exist or otherwise not able to move
         # TODO: handle this better
         except AttributeError:

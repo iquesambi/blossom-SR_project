@@ -136,7 +136,7 @@ def set_position():
     # data is provided as rotations wrt y,-x,-z (w/ screen facing up)
     # order is pitch/y, (-)roll/(-)x, -yaw(-z), height, ears, acc_x, acc_y, acc_z
     # split into measurements
-    raw_data = request.get_json()
+    raw_data = json.loads(request.get_data().decode('utf-8'))
     imu = get_imu_data(raw_data)
     mirror = raw_data['mirror']
 
