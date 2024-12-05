@@ -9,17 +9,17 @@ export class SequenceBuilderButton extends React.PureComponent {
     fetch(`/add_sequence`, {
       method: 'POST',
       body: JSON.stringify([{ // hard coded for now, should read real values
-        x: 80,
+        x: 0.75,
         y: 0,
-        z: 0,
+        z: 0.75,
         h: 50,
         ears: 50,
         time: 0,
       },
       {
         x: 0,
-        y: 0,
-        z: 80,
+        y: -0.2,
+        z: 0,
         h: 50,
         ears: 50,
         time: 2,

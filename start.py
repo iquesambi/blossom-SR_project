@@ -361,16 +361,6 @@ def handle_input(robot, cmd, args=[]):
 
     # reload gestures
     elif cmd == 'r':
-        #print(robot.get_motor_pos())
-        #robot.goto_position({'tower_1': 100}, 0, True)
-        #print(robot.get_motor_pos())
-        record(robot)
-        time.sleep(5)
-        robot.goto_position({'tower_1': 100}, 0, True)
-        time.sleep(2)
-        robot.goto_position({'base': 180}, 0, True)
-        input("Press 'enter' to stop recording")
-        stop_record(robot, input("Seq name: "))
         robot.load_seq()
         print(robot.seq_list['new'].to_list())
 

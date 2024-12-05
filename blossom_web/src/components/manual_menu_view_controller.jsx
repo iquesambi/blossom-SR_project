@@ -9,6 +9,10 @@ export class ManualMenuVC extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      pitch: 0,
+      roll: 0,
+      yaw: 0,
+      height: 50,
       ears: 50,
     };
 
@@ -21,7 +25,46 @@ export class ManualMenuVC extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h5> Pitch</h5>
+        <Slider 
+          value={this.state['pitch']} 
+          onChange={this.handleSlider('pitch')}
+          valueLabelDisplay="auto"
+          min={-3.14} 
+          max={3.14}
+          step={0.01}
+          style={{ width: '75%' }}
+        />
+        <h5>Roll</h5>
+        <Slider 
+          value={this.state['roll']} 
+          onChange={this.handleSlider('roll')}
+          valueLabelDisplay="auto"
+          min={-3.14} 
+          max={3.14}
+          step={0.01}
+          style={{ width: '75%' }}
+        />
+        <h5>Yaw</h5>
+        <Slider 
+          value={this.state['yaw']} 
+          onChange={this.handleSlider('yaw')}
+          valueLabelDisplay="auto"
+          min={-3.14} 
+          max={3.14}
+          step={0.01}
+          style={{ width: '75%' }}
+        />
+        <h5>Height</h5>
+        <Slider 
+          value={this.state['height']} 
+          onChange={this.handleSlider('height')}
+          valueLabelDisplay="auto"
+          min={0} 
+          max={100}
+          style={{ width: '75%' }}
+        />
         <h5>Ears</h5>
         <Slider 
           value={this.state['ears']} 
@@ -29,8 +72,15 @@ export class ManualMenuVC extends React.Component {
           valueLabelDisplay="auto"
           min={0} 
           max={100}
+          style={{ width: '75%' }}
         />
-        <ManualButton />
+        <ManualButton 
+          pitch={this.state.pitch}
+          roll={this.state.roll}
+          yaw={this.state.yaw}
+          height={this.state.height}
+          ears={this.state.ears}
+        />
       </div>
     );
   }
