@@ -9,8 +9,8 @@ export class ManualButton extends React.PureComponent {
     fetch(`/position`, {
       method: 'POST',
       body: JSON.stringify({
-        x: -this.props.roll,
-        y: this.props.pitch,
+        x: this.props.pitch,
+        y: this.props.roll,
         z: -this.props.yaw,
         h: this.props.height,
         ears: this.props.ears,

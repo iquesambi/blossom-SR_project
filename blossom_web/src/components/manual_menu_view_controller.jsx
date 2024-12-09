@@ -31,8 +31,10 @@ export class ManualMenuVC extends React.Component {
           value={this.state['pitch']} 
           onChange={this.handleSlider('pitch')}
           valueLabelDisplay="auto"
-          min={-3.14} 
-          max={3.14}
+          //min={-3.14} 
+          //max={3.14}
+          min={-0.4}
+          max={0.4}
           step={0.01}
           style={{ width: '75%' }}
         />
@@ -41,8 +43,10 @@ export class ManualMenuVC extends React.Component {
           value={this.state['roll']} 
           onChange={this.handleSlider('roll')}
           valueLabelDisplay="auto"
-          min={-3.14} 
-          max={3.14}
+          //min={-3.14} 
+          //max={3.14}
+          min={-0.4}
+          max={0.4}
           step={0.01}
           style={{ width: '75%' }}
         />
@@ -51,8 +55,10 @@ export class ManualMenuVC extends React.Component {
           value={this.state['yaw']} 
           onChange={this.handleSlider('yaw')}
           valueLabelDisplay="auto"
-          min={-3.14} 
-          max={3.14}
+          //min={-3.14} 
+          //max={3.14}
+          min={-1.8}
+          max={1.8}
           step={0.01}
           style={{ width: '75%' }}
         />
@@ -61,8 +67,10 @@ export class ManualMenuVC extends React.Component {
           value={this.state['height']} 
           onChange={this.handleSlider('height')}
           valueLabelDisplay="auto"
-          min={0} 
-          max={100}
+          //min={0} 
+          //max={100}
+          min={20}
+          max={60}
           style={{ width: '75%' }}
         />
         <h5>Ears</h5>
@@ -70,8 +78,10 @@ export class ManualMenuVC extends React.Component {
           value={this.state['ears']} 
           onChange={this.handleSlider('ears')}
           valueLabelDisplay="auto"
-          min={0} 
-          max={100}
+          //min={0} 
+          //max={100}
+          min={0}
+          max={80}
           style={{ width: '75%' }}
         />
         <ManualButton 
