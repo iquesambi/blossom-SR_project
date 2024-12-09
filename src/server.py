@@ -131,8 +131,14 @@ def handle_sequence_idle(gesture, idle):
 def add_sequence():
     # assume array of JSONs (pitch, roll, yaw, height, ears, acc_x, acc_y, acc_z, delay)
     raw_data = json.loads(request.get_data().decode('utf-8'))
-    server.record(server.master_robot)
-    for frame in raw_data:
+    name = raw_data['name']
+    if name == '':
+        name = 'new'
+    print(name)
+    frames = raw_data['actions']
+    print(frames)
+    """server.record(server.master_robot)
+    for frame in frames:
         imu = get_frame_data(frame)
         # get base motor positions, accounting for stored yaw reset position
         adj_yaw = imu[2]-server.yaw
@@ -171,8 +177,8 @@ def add_sequence():
 
         server.motor_pos = motor_pos
     time.sleep(1) # make sure to save final position
-    server.stop_record(server.master_robot, 'new')
-    server.master_robot.load_seq()
+    server.stop_record(server.master_robot, name)
+    server.master_robot.load_seq()"""
     return "200 OK"
 
 

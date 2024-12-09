@@ -8,7 +8,9 @@ export class SequenceBuilderButton extends React.PureComponent {
   handleClick() {
     fetch(`/add_sequence`, {
       method: 'POST',
-      body: JSON.stringify([{ // hard coded for now, should read real values
+      body: JSON.stringify({
+      name: this.props.name,
+      actions: [{ // hard coded for now, should read real values
         x: 0,
         y: 0.2,
         z: 0,
@@ -71,7 +73,7 @@ export class SequenceBuilderButton extends React.PureComponent {
         h: 50,
         ears: 50,
         time: 3,
-      }]),
+      }]}),
     })
     .catch(() => {});
   }
@@ -84,7 +86,7 @@ export class SequenceBuilderButton extends React.PureComponent {
             id={this.props.name}
             className="btn btn-primary"
             type="button"
-            value={'Build Sequence'}
+            value={'Save as'}
             onClick={this.handleClick.bind(this)} >
           </input>
         </div>
@@ -93,4 +95,6 @@ export class SequenceBuilderButton extends React.PureComponent {
   }
 }
 
-SequenceBuilderButton.propTypes = {}
+SequenceBuilderButton.propTypes = {
+  name: PropTypes.string.isRequired
+}
