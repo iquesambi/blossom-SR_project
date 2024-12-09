@@ -166,7 +166,7 @@ def add_sequence():
         # higher (0.3) = slow+smooth, low (0.1) = jittery+fast
         for bot in server.robots:
             print(motor_pos)
-            bot.goto_position(motor_pos, 0.5, True)
+            bot.goto_position(motor_pos, 0.3, True)
             bot.believed_motor_pos = motor_pos
 
         server.motor_pos = motor_pos
