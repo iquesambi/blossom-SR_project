@@ -17,16 +17,6 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-input[type="range"] {
-  height: 6px;
-  width:75%;
-  background: grey;
-  border-radius: 5px;
-  margin: auto;
-  background-image: linear-gradient(#573dff, #573dff);
-  background-repeat: no-repeat;
-}
-
 .blossom-controls .row {
   display: block;
   text-align: center;
