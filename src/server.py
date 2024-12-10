@@ -134,10 +134,8 @@ def add_sequence():
     name = raw_data['name']
     if name == '':
         name = 'new'
-    print(name)
     frames = raw_data['actions']
-    print(frames)
-    """server.record(server.master_robot)
+    server.record(server.master_robot)
     for frame in frames:
         imu = get_frame_data(frame)
         # get base motor positions, accounting for stored yaw reset position
@@ -178,7 +176,7 @@ def add_sequence():
         server.motor_pos = motor_pos
     time.sleep(1) # make sure to save final position
     server.stop_record(server.master_robot, name)
-    server.master_robot.load_seq()"""
+    server.master_robot.load_seq()
     return "200 OK"
 
 
