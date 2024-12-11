@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Slider from '@material-ui/core/Slider';
 import { ManualButton } from './manual_button';
+import PropTypes from 'prop-types';
 
 /**
  * A panel that houses a collection of GestureButtons and provides filtering functionality over them
@@ -8,14 +9,7 @@ import { ManualButton } from './manual_button';
 export class ActionMenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      pitch: 0,
-      roll: 0,
-      yaw: 0,
-      height: 50,
-      ears: 50,
-      time: 1,
-    };
+    this.state = this.props.positionState;
 
     this.handleSlider= this.handleSlider.bind(this);
   }
@@ -108,3 +102,7 @@ export class ActionMenu extends React.Component {
     );
   }
 }
+
+ActionMenu.propTypes = {
+  positionState: PropTypes.any.isRequired,
+};

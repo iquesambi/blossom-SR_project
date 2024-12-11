@@ -135,6 +135,8 @@ def add_sequence():
     if name == '':
         name = 'new'
     frames = raw_data['actions']
+    print('Recording sequence', name)
+    print('Frames:', frames)
     server.record(server.master_robot)
     for frame in frames:
         imu = get_frame_data(frame)
@@ -247,8 +249,8 @@ def get_frame_data(frame):
     global cur_yaw
 
     # convert to floats
-    frame = [frame['x'], frame['y'], frame['z'],
-           frame['h'], frame['ears'],
+    frame = [frame['pitch'], frame['roll'], -frame['yaw'],
+           frame['height'], frame['ears'],
            frame['time']]
 
     cur_yaw = frame[2]

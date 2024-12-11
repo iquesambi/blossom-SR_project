@@ -3,17 +3,8 @@ import PropTypes from 'prop-types';
 import { ActionButton } from './action_button';
 
 /**
- * A list of GestureButtons
+ * A collection of actions
  */
-const actionData = () => ({
-  pitch: 0,
-  roll: 0,
-  yaw: 0,
-  height: 50,
-  ears: 50,
-  time: 1
-})
-
 
 export class ActionCollection extends React.Component {
   constructor(props){
@@ -40,7 +31,7 @@ export class ActionCollection extends React.Component {
   getActions() {
     var actionsList = [];
     for (let i = 0; i < this.state.actions; i++) {
-      actionsList.push(this.actionButtonRefs[i].current.actionMenuRef.current.state);
+      actionsList.push(this.actionButtonRefs[i].current.getMenuState());
     } 
     return actionsList;
   }

@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
  */
 export class SequenceBuilderButton extends React.PureComponent {
   handleClick() {
-    /*fetch(`/add_sequence`, {
+    fetch(`/add_sequence`, {
       method: 'POST',
       body: JSON.stringify({
       name: this.props.name,
-      actions: this.props.actions
+      actions: this.props.getActions()
      }),
     })
-    .catch(() => {});*/
+    .catch(() => {});
     console.log(this.props.name);
     console.log(this.props.getActions());
   }
