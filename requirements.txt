@@ -5,5 +5,9 @@ sseclient==0.0.24
 requests_toolbelt==0.9.1
 python_jwt
 pycrypto==2.6.1
+Jinja2<2.12
+MarkupSafe<2.1
+werkzeug==1.0.1
+itsdangerous==2.0.1
 prettytable
 flask_cors

@@ -3,7 +3,6 @@ React app for interfacing with blossom
 
 To install dependencies, run
 ```
-yarn add node-sass@latest
 yarn install
 yarn build
 ```
