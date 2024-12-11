@@ -6,76 +6,16 @@ import PropTypes from 'prop-types';
  */
 export class SequenceBuilderButton extends React.PureComponent {
   handleClick() {
-    fetch(`/add_sequence`, {
+    /*fetch(`/add_sequence`, {
       method: 'POST',
       body: JSON.stringify({
       name: this.props.name,
-      actions: [{ // hard coded for now, should read real values
-        x: 0,
-        y: 0.2,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 0,
-      },
-      { 
-        x: 0,
-        y: 0,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      {
-        x: 0,
-        y: -0.2,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      { 
-        x: 0,
-        y: 0,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      { 
-        x: 0,
-        y: 0.2,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      { // hard coded for now, should read real values
-        x: 0,
-        y: 0,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      { 
-        x: 0,
-        y: -0.2,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      },
-      {
-        x: 0,
-        y: 0,
-        z: 0,
-        h: 50,
-        ears: 50,
-        time: 3,
-      }]}),
+      actions: this.props.actions
+     }),
     })
-    .catch(() => {});
+    .catch(() => {});*/
+    console.log(this.props.name);
+    console.log(this.props.getActions());
   }
 
   render() {
@@ -96,5 +36,6 @@ export class SequenceBuilderButton extends React.PureComponent {
 }
 
 SequenceBuilderButton.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  updateActions: PropTypes.func.isRequired
 }

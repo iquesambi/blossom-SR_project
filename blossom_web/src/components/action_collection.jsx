@@ -19,34 +19,44 @@ export class ActionCollection extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      actions: 1,
-      actionDatas: []
+      actions: 0,
+      actionButtons: []
     };
+    this.actionButtonRefs = [];
+    this.createRef = this.createRef.bind(this);
+    this.getActions = this.getActions.bind(this);
   }
-
 
   componentWillMount() {
     
   }
 
+  createRef() {
+    let newRef = React.createRef();
+    this.actionButtonRefs.push(newRef);
+    return newRef;
+  }
+
+  getActions() {
+    var actionsList = [];
+    for (let i = 0; i < this.state.actions; i++) {
+      actionsList.push(this.actionButtonRefs[i].current.actionMenuRef.current.state);
+    } 
+    return actionsList;
+  }
+
   handleClick() {
     this.setState(prevState => ({
       actions: prevState.actions + 1, // Increment the number of actions
+      actionButtons: [...prevState.actionButtons, <ActionButton key={prevState.actions+1} id = {prevState.actions+1} ref = {this.createRef()}/>]
     })); 
-    console.log("Action added!"); 
   } 
 
   render() {
 
-    const actionButtons = [];
-    for (let i = 0; i < this.state.actions; i++) {  
-      this.state.actionDatas.push(new actionData()); 
-      actionButtons.push(<ActionButton key={i} id = {i}/>);
-    }
-
     return (
       <div className="action-list">
-        {actionButtons}
+        {this.state.actionButtons}
         <div className="row">
           <div className="col-xs-4">
             <input

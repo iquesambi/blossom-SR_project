@@ -3,7 +3,6 @@ import { GestureMenuVC } from "./gesture_menu_view_controller";
 import { ManualMenuVC } from './manual_menu_view_controller';
 import { SequenceBuilderVC } from './sequence_builder_menu_view_controller';
 import { CameraView } from './camera_view';
-import { ActionBuilderVC } from './action_builder_menu_view_controller';
 
 /**
  * An app for browsing and playing sequences.
@@ -34,12 +33,6 @@ export class GestureApp extends React.Component {
               <h4>Sequence Builder</h4>
               <div className="blossom-controls">
                 <SequenceBuilderVC />
-              </div>
-            </div>
-            <div>
-              <h4>Action Builder</h4>
-              <div className="blossom-controls">
-                <ActionBuilderVC />
               </div>
             </div>
             <div>

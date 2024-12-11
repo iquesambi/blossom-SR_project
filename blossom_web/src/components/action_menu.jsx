@@ -94,6 +94,7 @@ export class ActionMenu extends React.Component {
           //max={100}
           min={0}
           max={5}
+          step={0.25}
           style={{ width: '75%' }}
         />
         <ManualButton 

@@ -11,6 +11,7 @@ export class ActionButton extends React.PureComponent {
     this.state = {
       isExpanded: false, // Tracks whether the content is expanded or collapsed
     };
+    this.actionMenuRef = React.createRef();
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -31,7 +32,7 @@ export class ActionButton extends React.PureComponent {
           />
         </div>
         {this.state.isExpanded && (
-          <ActionMenu/>
+          <ActionMenu ref={this.actionMenuRef}/>
         )}
       </div>
     );

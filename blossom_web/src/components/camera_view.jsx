@@ -13,7 +13,8 @@ export class CameraView extends React.PureComponent {
         <h4>Live Camera Stream</h4>
         <img id="cameraImage" 
           width="640" 
-          src="http://192.168.230.184/stream"
+          src="https://spectrum.ieee.org/media-library/blossom.jpg?id=25583846&width=1000&quality=85"
+          //src="http://192.168.230.184/stream"
           alt="Video Stream"
         />
       </div>
