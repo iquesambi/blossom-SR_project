@@ -31,15 +31,28 @@ export class SequenceBuilderVC extends React.Component {
     return (
       <div>
         <ActionCollection ref={this.actionCollectionRef}/>
-        <input
-          type="text"
-          value={this.state.sequenceName}
-          onChange={this.handleNameChange}
-        />
-        <SequenceBuilderButton
-          getActions={this.getActions} 
-          name={this.state.sequenceName}
-        />
+        <div className="row">
+          <SequenceBuilderButton
+            getActions={this.getActions} 
+            name={this.state.sequenceName}
+            save={false}
+            text={'Run sequence'}
+          />
+        </div>
+        <div className="row">
+          <input
+            type="text"
+            value={this.state.sequenceName}
+            onChange={this.handleNameChange}
+            style={{width:'45%'}}
+          />
+          <SequenceBuilderButton
+            getActions={this.getActions} 
+            name={this.state.sequenceName}
+            save={true}
+            text={'Save sequence as'}
+          />
+        </div>
       </div>
     );
   }
