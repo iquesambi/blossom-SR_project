@@ -44,7 +44,7 @@ export class SequenceBuilderVC extends React.Component {
             type="text"
             value={this.state.sequenceName}
             onChange={this.handleNameChange}
-            style={{width:'45%'}}
+            style={{width:'45%', margin: '2px'}}
           />
           <SequenceBuilderButton
             getActions={this.getActions} 
