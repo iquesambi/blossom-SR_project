@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { VideoApp } from "./components/video_app";
+import { GestureApp } from './components/gesture_app';
 
 class App extends Component {
 
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <VideoApp />
+        <GestureApp />
       </div>
     );
   }

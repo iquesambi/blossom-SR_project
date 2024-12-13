@@ -27,7 +27,7 @@ export class SequenceBuilderButton extends React.PureComponent {
         type="button"
         value={this.props.text}
         onClick={this.handleClick.bind(this)} 
-        style={{background: "#6133DA", width: "45%"}}>
+        style={{background: "#6133DA"}}>
       </input>
     )
   }

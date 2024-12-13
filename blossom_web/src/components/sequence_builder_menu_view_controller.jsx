@@ -30,27 +30,28 @@ export class SequenceBuilderVC extends React.Component {
   render() {
     return (
       <div>
-        <ActionCollection ref={this.actionCollectionRef}/>
-        <div className="row">
+        <div className ="blossom-controls mx-2 seqBuilder">
+          <ActionCollection ref={this.actionCollectionRef}/>
+        </div>
+        <div className = "seqBtns mx-2 align-items-center">
           <SequenceBuilderButton
             getActions={this.getActions} 
             name={this.state.sequenceName}
             save={false}
-            text={'Run sequence'}
+            text={'R'}
+            style = {{width:'10px'}}
           />
-        </div>
-        <div className="row">
           <input
             type="text"
             value={this.state.sequenceName}
             onChange={this.handleNameChange}
-            style={{width:'45%', margin: '2px'}}
+            style={{width:'150px', height:'40px', margin: '2px'}}
           />
           <SequenceBuilderButton
             getActions={this.getActions} 
             name={this.state.sequenceName}
             save={true}
-            text={'Save sequence as'}
+            text={'S'}
           />
         </div>
       </div>

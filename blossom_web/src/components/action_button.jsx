@@ -10,6 +10,7 @@ export class ActionButton extends React.PureComponent {
     super(props);
     this.state = {
       isExpanded: false, // Tracks whether the content is expanded or collapsed
+      key: props.key, 
       menu: {
         pitch: 0,
         roll: 0,
@@ -34,7 +35,7 @@ export class ActionButton extends React.PureComponent {
 
   render() {
     return (
-      <div id={this.props.id} className="row mx-4">
+      <div id={this.props.id} className="row">
         <div className="col-xs-4">
           <input
             id={this.props.id}
@@ -45,7 +46,7 @@ export class ActionButton extends React.PureComponent {
           />
         </div>
         {this.state.isExpanded && (
-          <ActionMenu ref={this.actionMenuRef} positionState={this.state.menu}/>
+          <ActionMenu key = {this.state.key} ref={this.actionMenuRef} positionState={this.state.menu}/>
         )}
       </div>
     );
