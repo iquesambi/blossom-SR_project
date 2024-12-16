@@ -22,6 +22,17 @@ const config = {
             use: 'babel-loader'
         },
         {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[path][name].[ext]',
+              },
+            },
+          ],
+        },
+        {
           test: /\.(css|scss)$/,
           use: [
             {
