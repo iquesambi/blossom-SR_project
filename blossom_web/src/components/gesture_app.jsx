@@ -3,7 +3,6 @@ import { GestureMenuVC } from "./gesture_menu_view_controller";
 import { ManualMenuVC } from './manual_menu_view_controller';
 import { SequenceBuilderVC } from './sequence_builder_menu_view_controller';
 import { CameraView } from './camera_view';
-import { SequenceBuilderButtons } from './sequence_builder_btns';
 
 /**
  * An app for browsing and playing sequences.

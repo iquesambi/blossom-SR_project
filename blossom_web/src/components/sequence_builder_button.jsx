@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 /**
  * A button that builds and saves a new sequence
  */
+
+
+
+
 export class SequenceBuilderButton extends React.PureComponent {
   handleClick() {
     fetch(`/add_sequence`, {
@@ -19,16 +23,23 @@ export class SequenceBuilderButton extends React.PureComponent {
     console.log(this.props.getActions());
   }
 
+  
+
   render() {
-    return (
-      <input
-        id={this.props.text}
-        className="btn btn-primary"
-        type="button"
-        value={this.props.text}
-        onClick={this.handleClick.bind(this)} 
-        style={{background: "#6133DA"}}>
-      </input>
+    return (  
+        <button
+          id={this.props.text}
+          className="btn btn-primary"
+          onClick={this.handleClick.bind(this)} 
+          style={{background: "#6133DA"}}>
+          
+
+          <img
+            src={this.props.iconSrc}
+            alt={this.props.text} 
+            style={{color: 'white', width:'24px', height:'26px'}}
+          />
+        </button>
     )
   }
 }

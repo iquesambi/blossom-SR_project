@@ -1,7 +1,8 @@
 import React from 'react';
 import { SequenceBuilderButton } from './sequence_builder_button';
 import { ActionCollection } from './action_collection';
-
+import runSrc from './run.png'
+import saveSrc from './save.png'
 /**
  * A panel that houses the sequence building functionality
  */
@@ -33,13 +34,12 @@ export class SequenceBuilderVC extends React.Component {
         <div className ="blossom-controls mx-2 seqBuilder">
           <ActionCollection ref={this.actionCollectionRef}/>
         </div>
-        <div className = "seqBtns mx-2 align-items-center">
+        <div className = "seqBtns mx-2 px-2  d-flex justify-content-between align-items-center">
           <SequenceBuilderButton
             getActions={this.getActions} 
             name={this.state.sequenceName}
             save={false}
-            text={'R'}
-            style = {{width:'10px'}}
+            iconSrc = {runSrc}
           />
           <input
             type="text"
@@ -51,7 +51,7 @@ export class SequenceBuilderVC extends React.Component {
             getActions={this.getActions} 
             name={this.state.sequenceName}
             save={true}
-            text={'S'}
+            iconSrc = {saveSrc}
           />
         </div>
       </div>
