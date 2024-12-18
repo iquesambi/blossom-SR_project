@@ -1,54 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const SvgImageSwitcher = () => {
-  const images = [
-    "touch-01.svg", // Default image when no key is pressed
-    "touch-02.svg", // Image for key 'a'
-    "touch-03.svg", // Image for key 's'
-    "touch-04.svg", // Image for key 'd'
-    "touch-05.svg", // Image for key 'f'
-    "touch-06.svg", // Image for key 'g'
-  ];
+export class SvgImageSwitcher extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentImage: props.images[0], // Default image
+    };
+    this.keyImageMap = {
+      a: 1,
+      s: 2,
+      d: 3,
+      f: 4,
+      g: 5,
+    };
+  }
 
-  const [currentImage, setCurrentImage] = useState(images[0]);
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keyup', this.handleKeyUp);
+  }
 
-  // Mapping of keys to image indices
-  const keyImageMap = {
-    a: 1,
-    s: 2,
-    d: 3,
-    f: 4,
-    g: 5,
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keyup', this.handleKeyUp);
+  }
+
+  handleKeyDown = (event) => {
+    const imageIndex = this.keyImageMap[event.key];
+    if (imageIndex !== undefined && imageIndex < this.props.images.length) {
+      this.setState({ currentImage: this.props.images[imageIndex] });
+    }
   };
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      const imageIndex = keyImageMap[event.key];
-      if (imageIndex !== undefined) {
-        setCurrentImage(images[imageIndex]);
-      }
-    };
+  handleKeyUp = () => {
+    this.setState({ currentImage: this.props.images[0] }); // Reset to default image
+  };
 
-    const handleKeyUp = () => {
-      setCurrentImage(images[0]); // Reset to default image
-    };
+  render() {
+    const { currentImage } = this.state;
+    return (
+        <img src={currentImage} alt="SVG Switcher" />
+    );
+  }
+}
 
-    // Attach event listeners
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    // Cleanup event listeners on unmount
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [images]);
-
-  return (
-    <div style={styles.container}>
-      <img src={currentImage} alt="SVG Switcher" style={styles.image} />
-    </div>
-  );
+SvgImageSwitcher.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default SvgImageSwitcher;
