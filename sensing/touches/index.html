@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Image Switcher</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    img {
+      width: auto;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <img id="svg-image" src="touch-01.svg" alt="SVG Image">
+  <script>
+    // JavaScript to handle the key press events
+    const images = [
+      "touch-01.svg", // Default image when no key is pressed
+      "touch-02.svg", // Image for key 'a'
+      "touch-03.svg", // Image for key 's'
+      "touch-04.svg", // Image for key 'd'
+      "touch-05.svg", // Image for key 'f'
+      "touch-06.svg"  // Image for key 'g'
+    ];
+
+    const defaultImage = images[0];
+    const imageElement = document.getElementById("svg-image");
+
+    // Mapping of keys to image indices
+    const keyImageMap = {
+      'a': 1,
+      's': 2,
+      'd': 3,
+      'f': 4,
+      'g': 5
+    };
+
+    document.addEventListener("keydown", (event) => {
+      const imageIndex = keyImageMap[event.key];
+      if (imageIndex !== undefined) {
+        imageElement.src = images[imageIndex];
+      }
+    });
+
+    document.addEventListener("keyup", () => {
+      // Reset to default image when no key is pressed
+      imageElement.src = defaultImage;
+    });
+  </script>
+</body>
+</html>
