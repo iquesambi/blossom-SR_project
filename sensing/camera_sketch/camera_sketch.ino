@@ -21,8 +21,8 @@
 #include "esp_camera.h"
 
 // Replace with your network credentials
-const char* ssid = "henrique";
-const char* password = "ique109090";
+const char* ssid = "alex"; //"henrique";
+const char* password = "Merlot2221"; //"ique109090";
 
 WebServer server(80);
 
@@ -69,8 +69,13 @@ void startCamera() {
 
 void handleStream() {
     WiFiClient client = server.client();
+    
+    // Send CORS headers for the stream
     client.println("HTTP/1.1 200 OK");
     client.println("Content-Type: multipart/x-mixed-replace; boundary=frame");
+    client.println("Access-Control-Allow-Origin: *");  // Allow any origin
+    client.println("Access-Control-Allow-Methods: GET, POST, OPTIONS");  // Allow necessary methods
+    client.println("Access-Control-Allow-Headers: Content-Type");  // Allow necessary headers
     client.println();
 
     while (client.connected()) {
@@ -91,6 +96,16 @@ void handleStream() {
     }
 }
 
+void handleOptions() {
+    // Respond to OPTIONS preflight requests with the appropriate CORS headers
+    WiFiClient client = server.client();
+    client.println("HTTP/1.1 200 OK");
+    client.println("Access-Control-Allow-Origin: *");
+    client.println("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    client.println("Access-Control-Allow-Headers: Content-Type");
+    client.println();
+}
+
 void connectWiFi() {
     Serial.print("Connecting to WiFi");
     WiFi.begin(ssid, password);
@@ -108,8 +123,11 @@ void setup() {
     connectWiFi();
     startCamera();
 
+    // Setup server routes
     server.on("/stream", HTTP_GET, handleStream);
+    server.on("/", HTTP_OPTIONS, handleOptions);  // Handle OPTIONS request for CORS preflight
     server.begin();
+
     Serial.println("HTTP server started");
 }
 

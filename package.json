@@ -1,5 +1,12 @@
 {
+  "proxy": "http://192.168.161.184",
   "devDependencies": {
-    "file-loader": "^6.2.0"
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "file-loader": "^6.2.0",
+    "json-loader": "^0.5.7",
+    "url-loader": "^4.1.1"
+  },
+  "dependencies": {
+    "face-api.js": "^0.22.2"
   }
 }

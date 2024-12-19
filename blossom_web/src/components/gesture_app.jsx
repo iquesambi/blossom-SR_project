@@ -3,6 +3,8 @@ import { GestureMenuVC } from "./gesture_menu_view_controller";
 import { ManualMenuVC } from './manual_menu_view_controller';
 import { SequenceBuilderVC } from './sequence_builder_menu_view_controller';
 import { CameraView } from './camera_view';
+import { SvgImageSwitcher } from './touch';
+
 
 /**
  * An app for browsing and playing sequences.
@@ -35,7 +37,12 @@ export class GestureApp extends React.Component {
             </div>
           </div>
           <div className = "row justify-content-center">
-            <CameraView />
+            <div class = "col">
+              <CameraView />
+            </div>
+            <div class = "col">
+              <SvgImageSwitcher/> 
+            </div>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ export class GestureMenuVC extends React.Component {
 
   render() {
     return (
-      <div className="w-20">
+      <div>
         <GestureSearchBar onChange={this.handleFilter} />
         <GestureCollection filter={this.state.filter}/>
       </div>

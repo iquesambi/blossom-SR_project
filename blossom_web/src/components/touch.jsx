@@ -1,11 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
+import t1 from './touch-01.svg';
+import t2 from './touch-02.svg';
+import t3 from './touch-03.svg';
+import t4 from './touch-04.svg';
+import t5 from './touch-05.svg';
+import t6 from './touch-06.svg';
+//Import SVGs
+
+const svgImages = [
+  t1,
+  t2,
+  t3,
+  t4,
+  t5,
+  t6
+]
+
+
 export class SvgImageSwitcher extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: props.images[0], // Default image
+      currentImage: svgImages[0], // Default image
     };
     this.keyImageMap = {
       a: 1,
@@ -14,6 +33,9 @@ export class SvgImageSwitcher extends React.PureComponent {
       f: 4,
       g: 5,
     };
+
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   componentDidMount() {
@@ -26,21 +48,24 @@ export class SvgImageSwitcher extends React.PureComponent {
     window.removeEventListener('keyup', this.handleKeyUp);
   }
 
-  handleKeyDown = (event) => {
+  handleKeyDown(event) {
+    
     const imageIndex = this.keyImageMap[event.key];
-    if (imageIndex !== undefined && imageIndex < this.props.images.length) {
-      this.setState({ currentImage: this.props.images[imageIndex] });
+    if (imageIndex !== undefined && imageIndex < svgImages.length) {
+      this.setState({ currentImage: svgImages[imageIndex] });
     }
-  };
+  }
+  
 
-  handleKeyUp = () => {
-    this.setState({ currentImage: this.props.images[0] }); // Reset to default image
-  };
+  handleKeyUp() {
+    this.setState({ currentImage: svgImages[0] });
+  }
+  
 
   render() {
     const { currentImage } = this.state;
     return (
-        <img src={currentImage} alt="SVG Switcher" />
+        <img width = '300px' src={currentImage} alt="SVG Switcher" />
     );
   }
 }
