@@ -48,6 +48,9 @@ export class CameraView extends React.PureComponent {
     if (imageElement && imageElement.complete && imageElement.naturalWidth !== 0) {
       try {
         const detections = await faceapi.detectAllFaces(imageElement);
+        if(!this.state.faceDetected && detections.length !== 0){
+          this.props.onFaceDetection(); 
+        }
         this.setState({ faceDetected: detections.length !== 0 });
         //console.log(detections); // Log or handle the detections here
       } catch (error) {
