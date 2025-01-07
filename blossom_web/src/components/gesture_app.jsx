@@ -11,6 +11,7 @@ import { BehaviourMenuVC } from './behaviour_menu_view_controller';
  */
 export class GestureApp extends React.Component {
 
+  
   constructor(props)
   {
     super(props);
@@ -18,11 +19,16 @@ export class GestureApp extends React.Component {
       selectFaceDetection: 'none',
       selectTouchDetection: 'none',
       selectSequence: '',
+      triggerFace: false, 
+      triggeredSeq: false,
+
     }
     this.handleFaceDetectionChange = this.handleFaceDetectionChange.bind(this);
     this.handleTouchChange = this.handleTouchChange.bind(this);
     this.handleSequenceChange = this.handleSequenceChange.bind(this);
     this.handleFaceDetection = this.handleFaceDetection.bind(this);
+    this.handleTouchDetection = this.handleTouchDetection.bind(this);
+    this.checkBothTrigger = this.checkBothTrigger.bind(this);
   }
 
   //HANDLERS for state management of Behavior Menu variables
@@ -38,9 +44,34 @@ export class GestureApp extends React.Component {
     this.setState({ selectSequence: val});
   }
 
+  checkBothTrigger(){
+    //HARDCODED SINGLE TIME RUN SEQUENCE
+    if(this.state.triggerFace && this.state.triggerTouch && !this.state.triggeredSeq)
+    {
+      console.log("Both Triggered");
+      this.state.triggeredSeq = true; 
+      fetch(`/s/${this.state.selectSequence}`)
+        .then((response) => { console.log(`${this.state.selectSequence} gesture fired`) });
+    }
+  }
+
+
+
   //Handler for On Face Detection
-  handleFaceDetection(){
-    console.log("Face Detected!")
+  handleFaceDetection(detected){
+    console.log("Face Detected!" + detected)
+    if(detected == false)
+    {
+      this.state.triggerFace = false;
+    }
+    if(detected && this.state.selectFaceDetection == 'true')
+    {
+      console.log(("Activate Face")); 
+      this.state.triggerFace = true;
+      this.checkBothTrigger(); 
+    }
+       
+    /*
     if(this.state.selectFaceDetection == 'true')
       {
         console.log("PerformSeq");
@@ -49,7 +80,33 @@ export class GestureApp extends React.Component {
         .then((response) => { console.log(`${this.state.selectSequence} gesture fired`) });
         
       }
+        */
   }
+
+  handleTouchDetection(key){
+    if(key == -1)
+    {
+      //console.log("Deregister Touch"); 
+      this.state.triggerTouch = false; 
+      return; 
+    }
+    //console.log("Register Touch " + key)
+    const expr = key == 1 && this.state.selectTouchDetection == 'center' ||
+          key == 2 && this.state.selectTouchDetection == 'base' ||  
+          key == 3 && this.state.selectTouchDetection == 'top' ||
+          key == 4 && this.state.selectTouchDetection == 'left' ||
+          key == 5 && this.state.selectTouchDetection == 'right';
+
+    if(expr)
+    {
+      console.log("Activate Touch")
+      this.state.triggerTouch = true;
+      this.checkBothTrigger(); 
+    }
+
+  }
+
+ 
 
 
   render() {
@@ -82,7 +139,7 @@ export class GestureApp extends React.Component {
               <CameraView onFaceDetection = {this.handleFaceDetection}/>
             </div>
             <div class = "col">
-              <SvgImageSwitcher/> 
+              <SvgImageSwitcher onTouchDetection = {this.handleTouchDetection} touchKey = {this.state.selectTouchDetection}/> 
             </div>
           </div>
           <div className = "row justify-content-center">

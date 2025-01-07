@@ -38,7 +38,6 @@ export class BehaviourMenuVC extends React.Component {
             style={{width:'80px', height: '40px', textIndent: '0px', margin: '0px', padding: '0px'}}
             onChange={this.handleFaceDetectionChange}>
               <option value="none">NONE</option>
-              <option value="false">False</option>
               <option value="true">True</option>
             </select>
           </div>

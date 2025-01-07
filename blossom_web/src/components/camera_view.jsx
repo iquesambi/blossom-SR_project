@@ -7,6 +7,7 @@ export class CameraView extends React.PureComponent {
     this.state = {
       modelLoaded: false,
       faceDetected: true,
+      prevDetection: true, 
     };
     this.imageRef = React.createRef();
   }
@@ -48,9 +49,10 @@ export class CameraView extends React.PureComponent {
     if (imageElement && imageElement.complete && imageElement.naturalWidth !== 0) {
       try {
         const detections = await faceapi.detectAllFaces(imageElement);
-        if(!this.state.faceDetected && detections.length !== 0){
-          this.props.onFaceDetection(); 
+        if(this.state.prevDetection != (detections.length !== 0)){
+          this.props.onFaceDetection(detections.length !== 0); 
         }
+        this.state.prevDetection = detections.length !== 0; 
         this.setState({ faceDetected: detections.length !== 0 });
         //console.log(detections); // Log or handle the detections here
       } catch (error) {
@@ -66,6 +68,7 @@ export class CameraView extends React.PureComponent {
     this.stopFaceDetection();
   }
 
+
   render() {
     return (
       <div>
@@ -75,7 +78,7 @@ export class CameraView extends React.PureComponent {
             <img
             ref={this.imageRef}
             width="640"
-            src="http://192.168.161.184/stream" // Replace with your stream URL
+            src="http://192.168.228.184/stream" // Replace with your stream URL
             alt="Video Stream"
             crossOrigin="anonymous"
             />

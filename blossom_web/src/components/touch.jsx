@@ -25,6 +25,7 @@ export class SvgImageSwitcher extends React.PureComponent {
     super(props);
     this.state = {
       currentImage: svgImages[0], // Default image
+      prevTouch : false, 
     };
     this.keyImageMap = {
       a: 1,
@@ -49,15 +50,27 @@ export class SvgImageSwitcher extends React.PureComponent {
   }
 
   handleKeyDown(event) {
-    
+    if(!this.state.prevTouch)
+      this.state.prevTouch = true; 
+    else
+      return;
     const imageIndex = this.keyImageMap[event.key];
     if (imageIndex !== undefined && imageIndex < svgImages.length) {
+
+      if(this.props.selectTouchDetection != 'none')
+      {
+        this.props.onTouchDetection(imageIndex);
+      }
+      
+
       this.setState({ currentImage: svgImages[imageIndex] });
     }
   }
   
 
   handleKeyUp() {
+    this.state.prevTouch = false; 
+    this.props.onTouchDetection(-1);
     this.setState({ currentImage: svgImages[0] });
   }
   
