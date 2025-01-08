@@ -15,7 +15,7 @@ export class CameraView extends React.PureComponent {
   componentDidMount() {
     // Load face-api.js models
     const loadModels = async () => {
-      await faceapi.nets.ssdMobilenetv1.loadFromUri('/models'); // Path to the models
+      await faceapi.nets.ssdMobilenetv1.loadFromUri('/static/models'); // Path to the models
       this.setState({ modelLoaded: true });
 
       // Make sure the image is loaded before starting detection
@@ -78,7 +78,7 @@ export class CameraView extends React.PureComponent {
             <img
             ref={this.imageRef}
             width="640"
-            src="http://192.168.228.184/stream" // Replace with your stream URL
+            src="http://192.168.134.184/stream" // Replace with your stream URL
             alt="Video Stream"
             crossOrigin="anonymous"
             />

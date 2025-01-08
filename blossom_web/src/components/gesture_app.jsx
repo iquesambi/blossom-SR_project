@@ -60,6 +60,14 @@ export class GestureApp extends React.Component {
   //Handler for On Face Detection
   handleFaceDetection(detected){
     console.log("Face Detected!" + detected)
+    if(this.state.selectFaceDetection == 'none')
+    {
+      this.state.triggerFace = true; 
+      return; 
+    }
+    else
+      this.state.triggerFace = false; 
+      
     if(detected == false)
     {
       this.state.triggerFace = false;
@@ -84,6 +92,15 @@ export class GestureApp extends React.Component {
   }
 
   handleTouchDetection(key){
+
+    if(this.state.selectTouchDetection == 'none')
+    {
+      this.state.triggerTouch = true; 
+      return; 
+    }
+    else 
+      this.state.triggerTouch = false; 
+    
     if(key == -1)
     {
       //console.log("Deregister Touch"); 
@@ -93,7 +110,7 @@ export class GestureApp extends React.Component {
     //console.log("Register Touch " + key)
     const expr = key == 1 && this.state.selectTouchDetection == 'center' ||
           key == 2 && this.state.selectTouchDetection == 'base' ||  
-          key == 3 && this.state.selectTouchDetection == 'top' ||
+          key == 3 && this.state.selectTouchDetection == 'head' ||
           key == 4 && this.state.selectTouchDetection == 'left' ||
           key == 5 && this.state.selectTouchDetection == 'right';
 
